@@ -1,0 +1,51 @@
+# ========================
+# Angular (client) ignores
+# ========================
+client/node_modules/
+client/dist/
+client/.angular/
+client/.env.local
+client/.env.*.local
+client/.env
+client/.DS_Store
+
+# ========================
+# Backend (Go/Spring Boot) ignores
+# ========================
+server/node_modules/
+server/dist/
+server/.env
+server/.env.local
+server/.env.*
+server/.DS_Store
+server/vendor/
+server/bin/
+*.o
+*.a
+*.so
+server/logs/
+server/*.log
+
+# ========================
+# IDE & Editor ignores
+# ========================
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.history/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ========================
+# System & Misc
+# ========================
+.DS_Store
+Thumbs.db
+*~
