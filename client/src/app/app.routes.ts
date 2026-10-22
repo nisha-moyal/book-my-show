@@ -10,6 +10,7 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { RoleGuard } from '../core/guards/role.guard';
 import { OwnerGuard } from '../core/guards/owner.guard'
 import { PartnerDashboardComponent } from '../features/partner-dashboard/partner-dashboard.component';
+import { PartnerTheaterDetailsComponent } from '../features/partner-dashboard/partner-theater-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,5 +33,10 @@ export const routes: Routes = [
     path: 'partner-dashboard',
     component: PartnerDashboardComponent,
     canActivate: [OwnerGuard]
+  },
+  {
+    path: 'partner-dashboard/theater/:theaterId',
+    component: PartnerTheaterDetailsComponent,
+    canActivate: [OwnerGuard] // same guard
   }
 ];

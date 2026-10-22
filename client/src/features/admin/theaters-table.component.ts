@@ -8,6 +8,7 @@ import { lastValueFrom } from 'rxjs';
 import { TheaterAddDialogComponent } from './theater-add-dialog.component';
 import { TheaterEditDialogComponent } from './theater-edit-dialog.component';
 import { TheaterDeleteDialogComponent } from './theater-delete-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-theaters-table',
@@ -44,7 +45,7 @@ import { TheaterDeleteDialogComponent } from './theater-delete-dialog.component'
 
         <tbody>
           @for (theater of theaters; track theater.id) {
-            <tr>
+            <tr class="clickable-row" (click)="openTheater(theater)">
               <td>{{ theater.name }}</td>
               <td>{{ theater.address }}</td>
               <td>{{ theater.email }}</td>
@@ -129,6 +130,15 @@ import { TheaterDeleteDialogComponent } from './theater-delete-dialog.component'
       background-color: #ff4d4f;
       color: white;
     }
+
+    .clickable-row {
+      cursor: pointer;
+    }
+
+    .clickable-row:hover {
+      background: #fafafa;
+    }
+
   `]
 })
 export class TheatersTableComponent implements OnInit {
@@ -136,6 +146,7 @@ export class TheatersTableComponent implements OnInit {
   private authService = inject(AuthService);
   private modal = inject(NzModalService);
   private message = inject(NzMessageService);
+  private router = inject(Router);
 
   theaters: any[] = [];
   isAdmin = false;
@@ -293,5 +304,9 @@ export class TheatersTableComponent implements OnInit {
       });
     });
   }
-  
+
+  openTheater(theater: any): void {
+    if (!theater?.id) return;
+    this.router.navigate(['/partner-dashboard/theater', theater.id]);
+  }
 }

@@ -1,0 +1,25 @@
+Show Schema:
+
+date
+time
+movie - ref to movie - id
+theater - ref to theater - id
+booked seats - array of seats
+ticketPrice
+
+
+Bookings:
+
+id,
+user,
+seats,
+payment mode
+price,
+show
+
+APIs:
+
+1. An API for partner to add the show
+2. An API to fetch the shows by movie + date for user
+3. An API for partner/admin to fetch shows by theater
+

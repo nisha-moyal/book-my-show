@@ -68,4 +68,8 @@ export class TheaterService {
       map((t) => this.mapTheater(t))
     );
   }
+
+  getTheaterById(id: string) {
+    return this.http.get<any>(`/theatres/${id}`);
+  }   
 }

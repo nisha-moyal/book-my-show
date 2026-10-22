@@ -1,14 +1,16 @@
-import connectDB from './config/db.js';
-import dotenv from 'dotenv';
-
 import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import cors from 'cors';
+
+import { loggerMiddleware } from './middleware/loggerMiddleware.js';
+import { errorMiddleware } from './middleware/errorMiddleware.js';
+
 import aboutRoutes from './routes/aboutRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import moviesRoutes from './routes/moviesRoute.js';
 import theaterRoutes from './routes/theaterRoutes.js';
-import { loggerMiddleware } from './middleware/loggerMiddleware.js';
-import { errorMiddleware } from './middleware/errorMiddleware.js';
-import cors from 'cors';
+import showRoutes from './routes/showRoutes.js';
 
 dotenv.config();
 console.log("MongoDB URI from env: ",process.env.MONGO_URI);
@@ -25,6 +27,7 @@ app.use('/api/about', aboutRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/movies', moviesRoutes);
 app.use('/api/theatres', theaterRoutes);
+app.use('/api/shows', showRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
