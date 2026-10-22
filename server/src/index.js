@@ -11,6 +11,7 @@ import userRoutes from './routes/userRoutes.js';
 import moviesRoutes from './routes/moviesRoute.js';
 import theaterRoutes from './routes/theaterRoutes.js';
 import showRoutes from './routes/showRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 
 dotenv.config();
 console.log("MongoDB URI from env: ",process.env.MONGO_URI);
@@ -28,6 +29,9 @@ app.use('/api/users', userRoutes);
 app.use('/api/movies', moviesRoutes);
 app.use('/api/theatres', theaterRoutes);
 app.use('/api/shows', showRoutes);
+app.use('/api/payments', paymentRoutes);
+
+
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

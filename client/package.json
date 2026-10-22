@@ -17,6 +17,7 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@stripe/stripe-js": "^10.1.0",
     "axios": "^1.20.0",
     "jsonwebtoken": "^9.0.3",
     "ng-zorro-antd": "^19.3.1",

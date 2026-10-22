@@ -23,19 +23,12 @@ import { AuthService } from '../services/auth.service';
 
         <div class="auth-section">
           @if(isLoggedIn()) {
+            <button nz-button nzType="primary" (click)="goToMyBookings()">View My Bookings</button>
             <button nz-button nzType="default" (click)="logout()">Logout</button>
           } @else {
             <button nz-button nzType="default" (click)="login()">Login</button>
             <button nz-button nzType="primary" (click)="register()">Register</button>
           }
-          <!-- <ng-container *ngIf="!(authService.isLoggedIn$ | async); else loggedInTemplate">
-            <button nz-button nzType="default" (click)="login()">Login</button>
-            <button nz-button nzType="primary" (click)="register()">Register</button>
-          </ng-container> -->
-
-          <!-- <ng-template #loggedInTemplate>
-            <button nz-button nzType="default" (click)="logout()">Logout</button>
-          </ng-template> -->
         </div>
       </div>
     </nz-header>
@@ -105,5 +98,9 @@ export class HeaderComponent {
 
   isLoggedIn(): boolean {
     return !!this.authService?.getToken();
+  }
+
+  goToMyBookings(): void {
+    this.router.navigate(['/my-bookings']);
   }
 }

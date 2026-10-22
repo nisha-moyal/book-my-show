@@ -76,7 +76,7 @@ interface TheaterShow {
                       <button
                         nz-button
                         class="time-btn"
-                        (click)="selectShow(show)">
+                        (click)="selectShow(show?.id || '')">
                         <span class="time">{{ show.time | date: 'shortTime' }}</span>
                         <span class="price">₹{{ show.ticketPrice }}</span>
                       </button>
@@ -317,9 +317,8 @@ export class MovieDetailsComponent implements OnInit {
     this.loadShows();
   }
 
-  selectShow(show: Show): void {
-    // Navigate to seat selection page
-    this.router.navigate(['/shows', show.id, 'seats']);
+  selectShow(showId: string): void {
+    this.router.navigate(['/shows', showId]);
   }
 
   goBack(): void {

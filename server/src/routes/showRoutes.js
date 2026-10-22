@@ -4,17 +4,29 @@ import { allowRoles } from '../middleware/role.js';
 import {
     addShow,
     getShowByMovie,
-    getShowByTheater
+    getShowByTheater,
+    getShowById
 } from "../controllers/showController.js";
 
-const router = express.Router();
+import { bookShow, getMyBookings } from "../controllers/bookingController.js";
 
+const router = express.Router();
 
 // Owner(Partner): manage adding shows
 router.post("/add", authMiddleware, allowRoles("owner"), addShow);
 
 router.get("/get-by-movie", authMiddleware, getShowByMovie);
+
 router.get("/get-by-theater", authMiddleware, allowRoles("admin", "owner"), getShowByTheater);
 
-export default router;
+router.post('/book', authMiddleware, bookShow);
+router.get('/my-bookings', authMiddleware, getMyBookings);
 
+
+router.get("/:id", authMiddleware, getShowById);
+// router.get("/get-by-theater", authMiddleware, allowRoles("admin", "owner"), getShowByTheater);
+
+// router.post('/book', authMiddleware, bookShow);
+// router.get('/my-bookings', authMiddleware, getMyBookings);
+
+export default router;

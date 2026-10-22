@@ -12,6 +12,9 @@ import { OwnerGuard } from '../core/guards/owner.guard'
 import { PartnerDashboardComponent } from '../features/partner-dashboard/partner-dashboard.component';
 import { PartnerTheaterDetailsComponent } from '../features/partner-dashboard/partner-theater-details.component';
 import { MovieDetailsComponent } from '../features/movie-details/movie-details.component';
+import { ShowDetailsComponent } from '../features/show-details/show-details.component';
+import { BookingSuccessComponent } from '../features/show-details/booking-success.component';
+import { MyBookingsComponent } from '../features/bookings/my-bookings.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,5 +46,15 @@ export const routes: Routes = [
   {
     path: 'movies/:movieId',
     component: MovieDetailsComponent
+  },
+  {
+    path: 'shows/:showId',
+    component: ShowDetailsComponent
+  },
+  { path: 'booking-success',
+    component: BookingSuccessComponent
+  },
+  { path: 'my-bookings',
+    component: MyBookingsComponent
   }
 ];

@@ -77,3 +77,19 @@ export const getShowByTheater = async (req, res) => {
     });
   }
 };
+
+export const getShowById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const show = await Show.findById(id).populate("movie theater");
+
+    if (!show) {
+      return res.status(404).json({ message: 'Show not found' });
+    }
+
+    res.status(200).json(show);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch show', error });
+  }
+};

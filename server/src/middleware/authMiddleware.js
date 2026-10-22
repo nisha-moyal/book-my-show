@@ -10,7 +10,8 @@ export const authMiddleware = (req, res, next) => {
         const token = authHeader.split(" ")[1];
         const secret = process.env.JWT_SECRET || "testSecret";
         const decoded = jwt.verify(token, secret);
-        
+
+        req.user = decoded;
         req.userId = decoded.userId;
         req.userRole = decoded.role;
         next();
