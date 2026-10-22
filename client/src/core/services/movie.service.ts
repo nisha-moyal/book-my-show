@@ -15,15 +15,7 @@ export class MovieService {
           console.error('Invalid response structure:', movies);
           return [];
         }
-        return movies.map(m => ({
-          id: m._id,
-          title: m.title,
-          poster: m.poster,
-          description: m.description,
-          duration: m.duration,
-          genre: m.genre,
-          date: new Date(m.date)
-        } as Movie));
+        return movies.map(m => this.mapMovie(m));
       }),
       catchError(err => {
         console.error('Error fetching movies:', err);
@@ -31,6 +23,11 @@ export class MovieService {
       })
     );
   }
+
+  getMovieById(id: string) {
+    return this.http.get<any>(`/movies/${id}`).pipe(
+      map((res) => this.mapMovie(res?.data ?? res)));
+  }   
 
   addMovie(movie: Movie): Observable<any> {
     return this.http.post('/movies', movie);
@@ -42,5 +39,17 @@ export class MovieService {
 
   updateMovie(id: string, movie: Movie): Observable<any> {
     return this.http.put(`/movies/${id}`, movie);
+  }
+
+  private mapMovie(movie: any): Movie {
+    return {
+      id: movie._id,
+      title: movie.title,
+      poster: movie.poster,
+      description: movie.description,
+      duration: movie.duration,
+      genre: movie.genre,
+      date: new Date(movie.date)
+    };
   }
 }

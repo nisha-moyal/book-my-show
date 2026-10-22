@@ -9,19 +9,27 @@ export class ShowService {
   private http = inject(HttpClient);
 
   private mapShow(s: any): Show {
-    const movie = typeof s.movie === 'object' ? s.movie : null;
-    const theater = typeof s.theater === 'object' ? s.theater : null;
+    const theater = s.theater && typeof s.theater === 'object' ? s.theater : null;
+    const movie = s.movie && typeof s.movie === 'object' ? s.movie : null;
 
     return {
       id: s._id,
       movieId: movie?._id ?? s.movie,
-      movieTitle: movie?.title ?? movie?.name ?? '',
+      movieTitle: movie?.title ?? '',
       theaterId: theater?._id ?? s.theater,
+      theaterName: theater?.name ?? '',
+      theaterAddress: theater?.address ?? '',
       date: s.date,
       time: s.time,
       ticketPrice: s.ticketPrice,
       bookedSeatsCount: s.bookedSeats?.length ?? 0
     };
+  }
+
+  getShowsByMovie(movieId: string, date: string): Observable<Show[]> {
+    return this.http
+      .get<any>(`/shows/get-by-movie?movieId=${movieId}&date=${date}`)
+      .pipe(map((res) => (res?.data ?? []).map((s: any) => this.mapShow(s))));
   }
 
   getShowsByTheater(theaterId: string): Observable<Show[]> {

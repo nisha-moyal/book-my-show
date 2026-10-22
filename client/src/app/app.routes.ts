@@ -4,13 +4,14 @@ import { LoginComponent } from '../features/auth/login/login.component';
 import { RegisterComponent } from '../features/auth/register/register.component';
 import { AboutComponent } from '../features/about/about.component';
 import { MoviesTableComponent } from '../features/admin/movies-table.component';
-import { HomeComponent } from '../features/home/home/home.component';
+import { HomeComponent } from '../features/home/home.component';
 import { TheatersTableComponent } from '../features/admin/theaters-table.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { RoleGuard } from '../core/guards/role.guard';
 import { OwnerGuard } from '../core/guards/owner.guard'
 import { PartnerDashboardComponent } from '../features/partner-dashboard/partner-dashboard.component';
 import { PartnerTheaterDetailsComponent } from '../features/partner-dashboard/partner-theater-details.component';
+import { MovieDetailsComponent } from '../features/movie-details/movie-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,5 +39,9 @@ export const routes: Routes = [
     path: 'partner-dashboard/theater/:theaterId',
     component: PartnerTheaterDetailsComponent,
     canActivate: [OwnerGuard] // same guard
+  },
+  {
+    path: 'movies/:movieId',
+    component: MovieDetailsComponent
   }
 ];

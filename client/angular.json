@@ -32,8 +32,10 @@
               }
             ],
             "styles": [
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "node_modules/@angular/cdk/overlay-prebuilt.css",
               "src/styles.scss"
-            ],
+            ],            
             "scripts": []
           },
           "configurations": {

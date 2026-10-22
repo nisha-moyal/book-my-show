@@ -96,6 +96,8 @@ export class LoginComponent {
         this.router.navigate(['/partner-dashboard']);
       } else if (this.authService.isAdmin()) {
         this.router.navigate(['/admin/theaters']);
+      } else {
+        this.router.navigate(['/']);
       }
     } catch (error: any) {
       this.message.error(error?.message || 'Login failed');

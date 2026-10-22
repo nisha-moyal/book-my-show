@@ -24,10 +24,15 @@ export const getShowByMovie = async (req, res) => {
       });
     }
 
-    const shows = await Show.find({
+    // Match movie and date as string directly
+    const filter = { 
       movie: movieId,
-      date: date,
-    }).populate("theater");
+      date: date  // string match: '2026-10-22'
+    };
+
+    const shows = await Show.find(filter)
+      .populate("theater")
+      .sort({ time: 1 });
 
     res.status(200).json({
       success: true,
@@ -42,6 +47,7 @@ export const getShowByMovie = async (req, res) => {
     });
   }
 };
+
 
 export const getShowByTheater = async (req, res) => {
   try {
