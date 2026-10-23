@@ -1,11 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { User } from "../models/user";
 import apiClient from ".";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private http = inject(HttpClient);
+
+  
   async register(user: User) {
     try {
       const response = await apiClient.post('/users/register', user);
@@ -32,4 +36,13 @@ export class UserService {
       throw error;
     }
   }
+
+  forgotPassword(payload: { email: string }) {
+    return this.http.patch('/users/forget-password', payload);
+  }
+  
+  resetPassword(email: string, payload: { otp: string; newPassword: string }) {
+    return this.http.patch(`/users/reset-password/${email}`, payload);
+  }
+  
 }

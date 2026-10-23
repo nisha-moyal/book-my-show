@@ -46,9 +46,17 @@ import { AuthService } from '../../../core/services/auth.service';
           </ng-template>
         </nz-form-item>
 
-        <button nz-button nzType="primary" [disabled]="!form.valid || isSubmitting">
-          {{ isSubmitting ? 'Logging in...' : 'Login' }}
-        </button>
+        <div class="button-container">
+          <button nz-button nzType="primary" [disabled]="!form.valid || isSubmitting">
+            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          </button>
+
+          <p class="forgot-password">
+            <button type="button" class="link-btn" (click)="openForgotPassword()">
+              Forgot Password?
+            </button>
+          </p>
+        </div>
       </form>
     </div>
   `,
@@ -57,6 +65,31 @@ import { AuthService } from '../../../core/services/auth.service';
       max-width: 400px;
       margin: 40px auto;
     }
+
+    .forgot-password {
+      text-align: right;
+      margin: 8px 0;
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #1976d2;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
   `]
 })
 export class LoginComponent {
@@ -104,5 +137,9 @@ export class LoginComponent {
     } finally {
       this.isSubmitting = false;
     }
+  }
+
+  openForgotPassword() {
+    this.router.navigate(['/forgot-password']);
   }
 }

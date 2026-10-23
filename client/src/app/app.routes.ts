@@ -15,6 +15,7 @@ import { MovieDetailsComponent } from '../features/movie-details/movie-details.c
 import { ShowDetailsComponent } from '../features/show-details/show-details.component';
 import { BookingSuccessComponent } from '../features/show-details/booking-success.component';
 import { MyBookingsComponent } from '../features/bookings/my-bookings.component';
+import { ForgotPasswordComponent } from '../features/forget-password/forgot-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -56,5 +57,9 @@ export const routes: Routes = [
   },
   { path: 'my-bookings',
     component: MyBookingsComponent
-  }
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
+  }  
 ];
