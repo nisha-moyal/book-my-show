@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Booking Ticket</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding: 20px 0;">
+      <tr>
+        <td align="center">
+          <table width="500" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; padding: 30px;">
+            <tr>
+              <td>
+                <h2 style="margin: 0 0 8px; color: #222;">Booking Confirmed!</h2>
+                <p style="margin: 0 0 24px; color: #666; font-size: 14px;">Hi #{userName}, your ticket has been booked.</p>
+
+                <!-- Ticket Box -->
+                <div style="background-color: #f9f9f9; border: 2px solid #1976d2; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p style="margin: 0 0 12px; color: #333; font-weight: bold; font-size: 16px;">#{showName}</p>
+                        <p style="margin: 0 0 8px; color: #555; font-size: 14px;">
+                          <strong>Date & Time:</strong> #{showDate} at #{showTime}
+                        </p>
+                        <p style="margin: 0 0 8px; color: #555; font-size: 14px;">
+                          <strong>Venue:</strong> #{venueName}
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;" />
+
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p style="margin: 0 0 8px; color: #333; font-weight: bold;">Seats Booked</p>
+                        <p style="margin: 0; color: #1976d2; font-size: 18px; font-weight: bold;">#{seats}</p>
+                      </td>
+                      <td align="right">
+                        <p style="margin: 0 0 8px; color: #333; font-weight: bold;">Total Price</p>
+                        <p style="margin: 0; color: #1976d2; font-size: 18px; font-weight: bold;">₹#{totalPrice}</p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;" />
+
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p style="margin: 0 0 8px; color: #666; font-size: 13px;">Booking ID</p>
+                        <p style="margin: 0; color: #222; font-weight: bold; font-size: 15px;">#{bookingId}</p>
+                      </td>
+                      <td align="right">
+                        <p style="margin: 0 0 8px; color: #666; font-size: 13px;">Transaction ID</p>
+                        <p style="margin: 0; color: #222; font-weight: bold; font-size: 15px;">#{transactionId}</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <!-- Important Info -->
+                <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 20px 0;">
+                  <p style="margin: 0; color: #333; font-size: 13px; font-weight: bold;">📌 Important</p>
+                  <ul style="margin: 8px 0 0; padding-left: 20px; color: #555; font-size: 12px;">
+                    <li>Arrive 15 minutes before the show starts</li>
+                    <li>Bring your booking ID and ID proof</li>
+                    <li>Keep this email safe for reference</li>
+                  </ul>
+                </div>
+
+                <p style="margin: 20px 0; color: #666; font-size: 13px;">
+                  If you have any questions, please contact our support team.
+                </p>
+
+                <p style="margin: 0; color: #999; font-size: 12px; text-align: center;">
+                  Thank you for booking with us!
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

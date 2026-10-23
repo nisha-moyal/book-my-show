@@ -1,5 +1,6 @@
 import Booking from "../models/bookings.js";
 import Show from "../models/show.js";
+import { EmailHelper } from "../utils/emailHelper.js";
 
 export const bookShow = async (req, res) => {
   try {
@@ -40,6 +41,32 @@ export const bookShow = async (req, res) => {
         transactionId,
       });
       await booking.save();
+
+
+      const populatedBooking = await Booking.findById(booking._id)
+      .populate({
+        path: "show",
+        populate: [
+          { path: "movie", select: "title" },
+          { path: "theater", select: "name address" },
+        ],
+      })
+      .populate("user");
+
+    // 4. Send ticket email using the template
+    await EmailHelper("ticket.html", populatedBooking.user.email, {
+        userName: booking.user.name,
+        showName: populatedBooking.show.movie.title,
+        showDate: populatedBooking.show.date,
+        showTime: populatedBooking.show.time,
+        venueName: populatedBooking.show.theater.name,
+        seats: populatedBooking.seats.join(", "),
+        totalPrice: populatedBooking.show.ticketPrice,
+        bookingId: booking._id,
+        transactionId: booking.transactionId,
+      },
+    );
+
     } catch (saveError) {
       // Roll back the seat reservation if the booking fails to save
       await Show.updateOne(

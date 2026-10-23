@@ -4,7 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const SENDGRID_API_KEY =
-  "SG.0QZFU-LPSeiopWySUs.....";
+  "SG.0QZFU-LPSeiopWySU...";
 
 const SENDER_EMAIL = "example@mail.com";
 
@@ -27,7 +27,7 @@ export async function EmailHelper(templateName, receiverEmail, userDetails) {
 
   try {
     const emailDetails = {
-      from: "manvish019@gmail.com", // sender address
+      from: SENDER_EMAIL, // sender address
       to: receiverEmail, // list of recipients
       subject: "Mail from BookMyShow", // subject line
       text: `Hi ${userDetails.name} this is your reset password OTP ${userDetails.otp}`,
@@ -36,7 +36,7 @@ export async function EmailHelper(templateName, receiverEmail, userDetails) {
 
     // Create a transporter using SMTP
     const transporter = nodemailer.createTransport({
-      host: SENDER_EMAIL,
+      host: "smtp.sendgrid.net",
       port: 587,
       secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
       auth: {
