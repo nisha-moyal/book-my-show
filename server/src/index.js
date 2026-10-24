@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import cors from 'cors';
+import { rateLimit } from 'express-rate-limit';
+import helmet from 'helmet';
 
 import { loggerMiddleware } from './middleware/loggerMiddleware.js';
 import { errorMiddleware } from './middleware/errorMiddleware.js';
@@ -19,6 +21,18 @@ const port = 5001;
 
 const app = express();
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message: 'Too many requests from this IP, please try again after some time.'
+});
+
+app.use(limiter);
+
+app.disable('x-powered-by');
+
+app.use(helmet());
+
 app.use(cors({
   origin: 'http://localhost:4200'}));
 
@@ -30,8 +44,6 @@ app.use('/api/movies', moviesRoutes);
 app.use('/api/theatres', theaterRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api/payments', paymentRoutes);
-
-
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
