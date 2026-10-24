@@ -6,7 +6,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-theater-add-dialog',
@@ -142,7 +141,6 @@ import { AuthService } from '../../core/services/auth.service';
 export class TheaterAddDialogComponent {
   private fb = inject(NonNullableFormBuilder);
   private modalRef = inject(NzModalRef);
-  private authService = inject(AuthService);
 
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],

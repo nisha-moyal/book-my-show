@@ -18,9 +18,11 @@ import { MyBookingsComponent } from '../features/bookings/my-bookings.component'
 import { ForgotPasswordComponent } from '../features/forget-password/forgot-password.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
   {

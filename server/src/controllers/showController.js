@@ -1,8 +1,6 @@
 import Show from "../models/show.js";
 
 export const addShow = async (req, res) => {
-  console.log("addShow: ", req.body);
-
   try {
     const show = await Show.create(req.body);
     console.log("Show created successfully");

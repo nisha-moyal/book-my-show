@@ -3,7 +3,7 @@ import express from 'express';
 import connectDB from './config/db.js';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 
 import { loggerMiddleware } from './middleware/loggerMiddleware.js';
 import { errorMiddleware } from './middleware/errorMiddleware.js';
@@ -29,9 +29,9 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.disable('x-powered-by');
+// app.disable('x-powered-by');
 
-app.use(helmet());
+// app.use(helmet());
 
 app.use(cors({
   origin: 'http://localhost:4200'}));

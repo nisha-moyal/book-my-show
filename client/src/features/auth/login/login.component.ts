@@ -130,7 +130,7 @@ export class LoginComponent {
       } else if (this.authService.isAdmin()) {
         this.router.navigate(['/admin/theaters']);
       } else {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }
     } catch (error: any) {
       this.message.error(error?.message || 'Login failed');

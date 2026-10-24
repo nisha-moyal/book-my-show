@@ -26,7 +26,6 @@ import { AuthService } from '../services/auth.service';
             <button nz-button nzType="primary" (click)="goToMyBookings()">View My Bookings</button>
             <button nz-button nzType="default" (click)="logout()">Logout</button>
           } @else {
-            <button nz-button nzType="default" (click)="login()">Login</button>
             <button nz-button nzType="primary" (click)="register()">Register</button>
           }
         </div>
