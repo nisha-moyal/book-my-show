@@ -52,6 +52,11 @@ export class ShowService {
       .pipe(map((res) => this.mapShow(res?.data ?? res)));
   }
 
+  // Payment methods
+  getStripePublishableKey(): Observable<{ publishableKey: string }> {
+    return this.http.get<{ publishableKey: string }>('/payments/config');
+  }
+
   createCheckoutSession(payload: {
     showId: string;
     seats: string[];
@@ -93,19 +98,19 @@ export class ShowService {
         ticketPrice: data.show?.ticketPrice ?? 0,
         movie: {
           _id: data.show?.movie?._id ?? '',
-          title: data.show?.movie?.title ?? 'Unknown Movie'
+          title: data.show?.movie?.title ?? 'Unknown Movie',
         },
         theater: {
           _id: data.show?.theater?._id ?? '',
           name: data.show?.theater?.name ?? 'Unknown Theater',
-          address: data.show?.theater?.address ?? ''
-        }
+          address: data.show?.theater?.address ?? '',
+        },
       },
       user: data.user,
       seats: data.seats ?? [],
       transactionId: data.transactionId,
       createdAt: data.createdAt,
-      updatedAt: data.updatedAt
+      updatedAt: data.updatedAt,
     };
   }
 }

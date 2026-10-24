@@ -1,12 +1,10 @@
+import dotenv from 'dotenv';
 import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const SENDGRID_API_KEY =
-  "SG.0QZFU-LPSeiopWySU...";
-
-const SENDER_EMAIL = "example@mail.com";
+dotenv.config();
 
 function replaceContent(content, userDetails) {
   let allKeys = Object.keys(userDetails);
@@ -27,7 +25,7 @@ export async function EmailHelper(templateName, receiverEmail, userDetails) {
 
   try {
     const emailDetails = {
-      from: SENDER_EMAIL, // sender address
+      from: process.env.SENDER_EMAIL, // sender address
       to: receiverEmail, // list of recipients
       subject: "Mail from BookMyShow", // subject line
       text: `Hi ${userDetails.name} this is your reset password OTP ${userDetails.otp}`,
@@ -41,7 +39,7 @@ export async function EmailHelper(templateName, receiverEmail, userDetails) {
       secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
       auth: {
         user: "apikey",
-        pass: SENDGRID_API_KEY,
+        pass: process.env.SENDGRID_API_KEY,
       },
     });
 

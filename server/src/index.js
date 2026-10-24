@@ -1,5 +1,5 @@
-import express from 'express';
 import dotenv from 'dotenv';
+import express from 'express';
 import connectDB from './config/db.js';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
@@ -16,7 +16,7 @@ import showRoutes from './routes/showRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 
 dotenv.config();
-console.log("MongoDB URI from env: ",process.env.MONGO_URI);
+
 const port = 5001;
 
 const app = express();
@@ -37,7 +37,9 @@ app.use(cors({
   origin: 'http://localhost:4200'}));
 
 app.use(express.json());
+
 app.use(loggerMiddleware)
+
 app.use('/api/about', aboutRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/movies', moviesRoutes);

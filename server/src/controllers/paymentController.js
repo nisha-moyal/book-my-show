@@ -1,9 +1,14 @@
+import dotenv from 'dotenv';
 import Stripe from 'stripe';
 import Show from '../models/show.js';
 
-const STRIPE_SECRET_KEY = "sk_test_51UEVwh4jf05GoAH........";
+dotenv.config();
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export const getStripeConfig = (req, res) => {
+  res.json({ publishableKey: process.env.STRIPE_PUBLISHABLE_KEY });
+};
 
 export const createCheckoutSession = async (req, res) => {
   try {

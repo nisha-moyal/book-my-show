@@ -207,9 +207,10 @@ export class ShowDetailsComponent implements OnInit {
   selectedSeats: string[] = [];
 
   private checkout: any;
-  private stripePublishableKey = 'pk_test_51UEVwh4jf05GoAHwX.......';
+  private stripePublishableKey: any;
 
   ngOnInit(): void {
+    this.initializeStripe();
     this.showId = this.route.snapshot.paramMap.get('showId') ?? '';
     if (!this.showId) {
       this.message.error('Show not found');
@@ -314,35 +315,6 @@ export class ShowDetailsComponent implements OnInit {
     });
   }
   
-  
-
-  // private handlePaymentCompletion(): void {
-  //   if (!this.sessionId) {
-  //     this.message.error('Session ID not found');
-  //     this.resetPaymentForm();
-  //     return;
-  //   }
-  
-  //   this.showService.verifyPayment(this.sessionId).subscribe({
-  //     next: (res) => {
-  //       if (res.paymentStatus === 'success' && res.transactionId) {
-  //         this.message.success('Payment successful');
-  //         console.log('Transaction ID:', res.transactionId);
-  
-  //         // Next step will be booking the seats
-  //         // For now just keep it here so you can verify the payment flow
-  //       } else {
-  //         this.message.error('Payment failed');
-  //         this.resetPaymentForm();
-  //       }
-  //     },
-  //     error: () => {
-  //       this.message.error('Payment failed');
-  //       this.resetPaymentForm();
-  //     }
-  //   });
-  // }
-
   private handlePaymentCompletion(): void {
     if (!this.sessionId) {
       this.message.error('Session ID not found');
@@ -399,6 +371,15 @@ export class ShowDetailsComponent implements OnInit {
     this.checkout = undefined;
     this.showPaymentForm = false;
     this.paying = false;
+  }
+
+  private initializeStripe() {
+    this.showService.getStripePublishableKey().subscribe({
+      next: ({ publishableKey }) => {
+        this.stripePublishableKey = publishableKey;
+      },
+      error: (err) => console.error('Failed to load Stripe config:', err),
+    });
   }
   
 }
