@@ -16,13 +16,14 @@ import { ShowDetailsComponent } from '../features/show-details/show-details.comp
 import { BookingSuccessComponent } from '../features/show-details/booking-success.component';
 import { MyBookingsComponent } from '../features/bookings/my-bookings.component';
 import { ForgotPasswordComponent } from '../features/forget-password/forgot-password.component';
+import { guestGuard } from '../core/guards/guest.gurad';
 
 export const routes: Routes = [
   { path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
-  { path: '', component: LoginComponent },
+  { path: '', component: LoginComponent, canActivate: [guestGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
   {
@@ -48,17 +49,21 @@ export const routes: Routes = [
   },
   {
     path: 'movies/:movieId',
-    component: MovieDetailsComponent
+    component: MovieDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'shows/:showId',
-    component: ShowDetailsComponent
+    component: ShowDetailsComponent,
+    canActivate: [AuthGuard]
   },
   { path: 'booking-success',
-    component: BookingSuccessComponent
+    component: BookingSuccessComponent,
+    canActivate: [AuthGuard]
   },
   { path: 'my-bookings',
-    component: MyBookingsComponent
+    component: MyBookingsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'forgot-password',

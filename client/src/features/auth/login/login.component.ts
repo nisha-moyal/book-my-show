@@ -126,11 +126,11 @@ export class LoginComponent {
       this.message.success('Login successful');
       // Here is the critical line:
       if (this.authService.isOwner()) {
-        this.router.navigate(['/partner-dashboard']);
+        this.router.navigate(['/partner-dashboard'], { replaceUrl: true });
       } else if (this.authService.isAdmin()) {
-        this.router.navigate(['/admin/theaters']);
+        this.router.navigate(['/admin/theaters'], { replaceUrl: true });
       } else {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home'], { replaceUrl: true });
       }
     } catch (error: any) {
       this.message.error(error?.message || 'Login failed');

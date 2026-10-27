@@ -23,7 +23,9 @@ import { AuthService } from '../services/auth.service';
 
         <div class="auth-section">
           @if(isLoggedIn()) {
-            <button nz-button nzType="primary" (click)="goToMyBookings()">View My Bookings</button>
+            @if(isUser()) {
+              <button nz-button nzType="primary" (click)="goToMyBookings()">View My Bookings</button>
+            }
             <button nz-button nzType="default" (click)="logout()">Logout</button>
           } @else {
             <button nz-button nzType="primary" (click)="register()">Register</button>
@@ -101,5 +103,9 @@ export class HeaderComponent {
 
   goToMyBookings(): void {
     this.router.navigate(['/my-bookings']);
+  }
+
+  isUser(): boolean {
+    return this.authService?.getRole() === 'user';
   }
 }
